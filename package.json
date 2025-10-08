@@ -6,15 +6,27 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "ws:dev": "tsx watch server/websocket.ts",
+    "ws:build": "tsc server/websocket.ts --outDir dist",
+    "ws:start": "node dist/websocket.js",
+    "dev:all": "concurrently \"npm run dev\" \"npm run ws:dev\""
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.14",
+    "@types/ws": "^8.18.1",
     "axios": "^1.12.2",
+    "concurrently": "^9.2.1",
+    "dotenv": "^17.2.3",
+    "eventemitter3": "^5.0.1",
     "next": "^15.5.4",
     "openai": "^6.2.0",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
+    "tsx": "^4.20.6",
+    "ws": "^8.18.3"
   },
   "devDependencies": {
     "@types/node": "^20",
