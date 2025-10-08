@@ -61,9 +61,10 @@ export function WaveformVisualizer({
 
       // Draw waveform
       ctx.strokeStyle = color
-      ctx.lineWidth = 3
+      ctx.lineWidth = 2.5
       ctx.lineCap = 'round'
       ctx.lineJoin = 'round'
+      ctx.globalAlpha = 0.8
       ctx.beginPath()
 
       const step = width / maxPoints
@@ -116,13 +117,25 @@ export function WaveformVisualizer({
     }
   }, [isActive])
 
+  const statusText = isActive ? 'Listening...' : 'Ready'
+
   return (
-    <div className="w-full h-24 bg-gray-50 rounded-lg overflow-hidden">
-      <canvas
-        ref={canvasRef}
-        className="w-full h-full"
-        style={{ width: '100%', height: '100%' }}
-      />
+    <div className="w-full">
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-sm font-medium text-gray-600">
+          Waveform Visualization
+        </span>
+        <span className={`text-sm font-semibold ${isActive ? 'text-primary-600 animate-pulse' : 'text-gray-400'}`}>
+          {statusText}
+        </span>
+      </div>
+      <div className="w-full h-28 bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg overflow-hidden border border-gray-200 shadow-inner">
+        <canvas
+          ref={canvasRef}
+          className="w-full h-full"
+          style={{ width: '100%', height: '100%' }}
+        />
+      </div>
     </div>
   )
 }

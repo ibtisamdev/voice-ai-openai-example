@@ -5,6 +5,13 @@ export interface Message {
   content: string
   timestamp: Date
   audioUrl?: string
+  isPlaying?: boolean
+  hasPlayed?: boolean
+  actions?: Array<{
+    id: string
+    description: string
+    status: 'completed' | 'pending' | 'failed'
+  }>
 }
 
 // Audio types
